@@ -124,6 +124,9 @@ public class UserInput : MonoBehaviour
         // Engine sound
         m_EngineSound.volume = m_EngineLoudness * (m_Rigidbody2D.velocity.magnitude + 5.0f);
 
+        // Interaction music
+        m_MusicController.interactionOn = (currentInteractable != null);
+
     }
 
     Vector3 BezierTerm(float t, Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3)
@@ -147,6 +150,13 @@ public class UserInput : MonoBehaviour
 
     public void OnLevelComplete()
     {
+        // Force the current interactable to be let go
+        if (currentInteractable != null)
+        {
+            currentInteractable.active = false;
+            currentInteractable = null;
+        }
+
         m_Animator.SetTrigger("Fling");
         m_LevelHolder.OnLevelComplete();
         m_MusicController.phase++;

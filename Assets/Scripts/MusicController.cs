@@ -9,6 +9,12 @@ public class MusicController : MonoBehaviour
     public float smoothTime = 1.0f;
 
     public AudioClip[] layers;
+    public int[] triggers;
+
+    public bool interactionOn;
+    public AudioClip interactionClip;
+    private AudioSource interactionSource;
+    private float interactionVelocity;
 
     private AudioSource[] layerSources;
     private float[] layerVelocities;
@@ -21,12 +27,10 @@ public class MusicController : MonoBehaviour
 
         for (int i = 0; i < layers.Length; i++)
         {
-            layerSources[i] = gameObject.AddComponent<AudioSource>();
-            layerSources[i].clip = layers[i];
-            layerSources[i].volume = 0.0f;
-            layerSources[i].loop = true;
-            layerSources[i].Play();
+            layerSources[i] = CreateSource(layers[i]);
         }
+
+        interactionSource = CreateSource(interactionClip);
     }
 
     // Update is called once per frame
@@ -34,9 +38,24 @@ public class MusicController : MonoBehaviour
     {
         for (int i = 0; i < layerSources.Length; i++)
         {
-            AudioSource source = layerSources[i];
-            float target = (i <= phase) ? globalVolume : 0.0f;
-            source.volume = Mathf.SmoothDamp(source.volume, target, ref layerVelocities[i], smoothTime);
+            HandleClip(layerSources[i], ref layerVelocities[i], triggers[i] <= phase);
         }
+
+        HandleClip(interactionSource, ref interactionVelocity, interactionOn, 0.5f);
+    }
+
+    AudioSource CreateSource(AudioClip clip)
+    {
+        AudioSource source = gameObject.AddComponent<AudioSource>();
+        source.clip = clip;
+        source.volume = 0.0f;
+        source.loop = true;
+        source.Play();
+        return source;
+    }
+
+    void HandleClip(AudioSource source, ref float velocity, bool predicate, float smoothingMultiplier = 1.0f)
+    {
+        source.volume = Mathf.SmoothDamp(source.volume, predicate ? globalVolume : 0.0f, ref velocity, smoothTime * smoothingMultiplier);
     }
 }

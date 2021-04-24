@@ -1302,6 +1302,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c3a50ec3e29610047a8ebd0c66f3e028, type: 3}
   - {fileID: 8300000, guid: 14ef73a013c7387498570a14680344d0, type: 3}
   - {fileID: 8300000, guid: 19fcacff5c8552b4781f214c3acad7e1, type: 3}
+  triggers: 000000000100000004000000
+  interactionOn: 0
+  interactionClip: {fileID: 8300000, guid: 9ec2d069f5a6d5d498c7653cecd6fb35, type: 3}
 --- !u!1 &594190314
 GameObject:
   m_ObjectHideFlags: 0
