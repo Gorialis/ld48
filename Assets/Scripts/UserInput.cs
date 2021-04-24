@@ -6,6 +6,7 @@ public class UserInput : MonoBehaviour
 {
     public LevelHolder m_LevelHolder;
     public Camera m_Camera;
+    public MusicController m_MusicController;
 
     public LineRenderer m_LineRenderer;
     public Transform m_BeamOrigin;
@@ -142,5 +143,6 @@ public class UserInput : MonoBehaviour
     {
         m_Animator.SetTrigger("Fling");
         m_LevelHolder.OnLevelComplete();
+        m_MusicController.phase++;
     }
 }

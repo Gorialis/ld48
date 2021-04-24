@@ -5,10 +5,12 @@ using UnityEngine;
 public class BeamInteractable : MonoBehaviour
 {
     public Animator m_Animator;
-    public Rigidbody2D m_Rigidbody2D;
-    public bool pullable = false;
 
+    public Rigidbody2D m_Rigidbody2D;
+    public RigidbodyConstraints2D m_RigidbodyConstraints;
+    public bool pullable = false;
     public Vector3 target;
+
     public bool active = false;
 
     public Animator m_targetAnimator;
@@ -37,15 +39,18 @@ public class BeamInteractable : MonoBehaviour
 
         if (pullable)
         {
-            Vector3 distanceToTarget = target - transform.position;
-
-            // Clamp magnitude
-            if (distanceToTarget.magnitude > 10)
+            if (active)
             {
-                distanceToTarget *= (10.0f / distanceToTarget.magnitude);
-            }
+                Vector3 distanceToTarget = (target - transform.position) * 4.0f;
 
-            m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, distanceToTarget, ref movementVelocity, m_Smoothing);
+                // Clamp magnitude
+                if (distanceToTarget.magnitude > 50)
+                {
+                    distanceToTarget *= (50.0f / distanceToTarget.magnitude);
+                }
+
+                m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, distanceToTarget, ref movementVelocity, m_Smoothing);
+            }
         } else
         {
             activation = Mathf.SmoothDamp(activation, active ? 1.0f : 0.0f, ref activationVelocity, 1.0f);

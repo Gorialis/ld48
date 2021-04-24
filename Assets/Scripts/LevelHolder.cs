@@ -89,7 +89,14 @@ public class LevelHolder : MonoBehaviour
         foreach (Rigidbody2D rigidbody in levelObjects[1].GetComponentsInChildren<Rigidbody2D>())
         {
             rigidbody.isKinematic = false;
-            rigidbody.constraints &= ~(RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY);
+
+            // Honor the desired constraints of an interactable if present
+            BeamInteractable interactable = rigidbody.GetComponent<BeamInteractable>();
+
+            if (interactable != null)
+                rigidbody.constraints = interactable.m_RigidbodyConstraints;
+            else
+                rigidbody.constraints &= ~(RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY);
         }
     }
 
