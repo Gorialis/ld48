@@ -8,6 +8,8 @@ public class UserInput : MonoBehaviour
     public Camera m_Camera;
     public MusicController m_MusicController;
 
+    public AudioSource m_EngineSound;
+    public float m_EngineLoudness = 0.05f;
     public LineRenderer m_LineRenderer;
     public Transform m_BeamOrigin;
     public Transform m_BeamHandle;
@@ -118,6 +120,10 @@ public class UserInput : MonoBehaviour
             Vector3 relativeToCamera = m_Camera.transform.worldToLocalMatrix.MultiplyPoint(currentInteractable.transform.position);
             currentInteractable.target = m_Camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, relativeToCamera.z));
         }
+
+        // Engine sound
+        m_EngineSound.volume = m_EngineLoudness * (m_Rigidbody2D.velocity.magnitude + 5.0f);
+
     }
 
     Vector3 BezierTerm(float t, Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3)

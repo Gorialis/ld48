@@ -17,8 +17,18 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: GoldFixture
+    second: {fileID: 2100000, guid: 3c7f4146f89522b44b0bf9eaca1018cc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: LightUp
     second: {fileID: 2100000, guid: 4e17d4f4cb1f4e34d97df8304d8f6ba0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RealString
+    second: {fileID: 2100000, guid: e31e770137b5c964b81b57dfd1c959ae, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule

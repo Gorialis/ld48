@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e8ebcb9ca7d1bc547b870f7a3acc54fb
+guid: 19d46a8a499848046860ac18a9009724
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
@@ -12,27 +12,12 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: GoldFixture
-    second: {fileID: 2100000, guid: 3c7f4146f89522b44b0bf9eaca1018cc, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
       name: LightUp
     second: {fileID: 2100000, guid: 4e17d4f4cb1f4e34d97df8304d8f6ba0, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: RealString
-    second: {fileID: 2100000, guid: e31e770137b5c964b81b57dfd1c959ae, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
       name: RealWood
-    second: {fileID: 2100000, guid: 9376b4b68b893ee46ac34fbeb65da9a8, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Wood
     second: {fileID: 2100000, guid: 9376b4b68b893ee46ac34fbeb65da9a8, type: 2}
   materials:
     materialImportMode: 2
