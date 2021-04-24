@@ -112,6 +112,10 @@ public class UserInput : MonoBehaviour
             }
 
             m_LineRenderer.SetPositions(positions);
+
+            // Cast the mouse position to this interactable
+            Vector3 relativeToCamera = m_Camera.transform.worldToLocalMatrix.MultiplyPoint(currentInteractable.transform.position);
+            currentInteractable.target = m_Camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, relativeToCamera.z));
         }
     }
 

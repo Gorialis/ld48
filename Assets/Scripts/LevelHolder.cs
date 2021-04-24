@@ -30,6 +30,13 @@ public class LevelHolder : MonoBehaviour
             {
                 collider.enabled = false;
             }
+
+            // Disable all the Rigidbodies
+            foreach (Rigidbody2D rigidbody in child.gameObject.GetComponentsInChildren<Rigidbody2D>())
+            {
+                rigidbody.isKinematic = true;
+                rigidbody.constraints |= RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
+            }
         }
 
         EnableCurrentColliders();
@@ -65,6 +72,11 @@ public class LevelHolder : MonoBehaviour
         {
             collider.enabled = false;
         }
+
+        foreach (Rigidbody2D rigidbody in levelObjects[1].GetComponentsInChildren<Rigidbody2D>())
+        {
+            rigidbody.isKinematic = true;
+        }
     }
 
     public void EnableCurrentColliders()
@@ -72,6 +84,12 @@ public class LevelHolder : MonoBehaviour
         foreach (Collider2D collider in levelObjects[1].GetComponentsInChildren<Collider2D>())
         {
             collider.enabled = true;
+        }
+
+        foreach (Rigidbody2D rigidbody in levelObjects[1].GetComponentsInChildren<Rigidbody2D>())
+        {
+            rigidbody.isKinematic = false;
+            rigidbody.constraints &= ~(RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY);
         }
     }
 
