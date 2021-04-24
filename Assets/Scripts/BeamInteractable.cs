@@ -28,7 +28,7 @@ public class BeamInteractable : MonoBehaviour
         brightness = Mathf.SmoothDamp(brightness, active ? 1.0f : 0.0f, ref brightnessVelocity, 0.25f);
         m_Animator.SetFloat("Brightness", brightness);
 
-        activation = Mathf.SmoothDamp(activation, active ? 1.0f : 0.0f, ref activationVelocity, 2.0f);
+        activation = Mathf.SmoothDamp(activation, active ? 1.0f : 0.0f, ref activationVelocity, 1.0f);
         m_targetAnimator.SetFloat(m_targetField, activation);
     }
 }

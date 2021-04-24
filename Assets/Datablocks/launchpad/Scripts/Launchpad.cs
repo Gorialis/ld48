@@ -6,6 +6,7 @@ public class Launchpad : MonoBehaviour
 {
     public Animator m_Animator;
     public UserInput m_Player;
+    public AudioSource m_AudioSource;
 
     private bool triggered;
 
@@ -27,6 +28,7 @@ public class Launchpad : MonoBehaviour
         if (!triggered && other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             m_Animator.SetTrigger("Fling");
+            m_AudioSource.Play();
             triggered = true;
             m_Player.OnLevelComplete();
         }
