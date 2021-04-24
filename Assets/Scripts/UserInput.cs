@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class UserInput : MonoBehaviour
 {
+    public LevelHolder m_LevelHolder;
+
     public Animator m_Animator;
     public Rigidbody2D m_Rigidbody2D;
     public float m_Speed;
     public float m_Smoothing;
+
+    public bool m_FollowLevelDepth = true;
 
     private float targetFacingDirection = 0.0f;
     private float actualFacingDirection = 0.0f;
@@ -41,5 +45,24 @@ public class UserInput : MonoBehaviour
         actualFacingDirection = Mathf.SmoothDamp(actualFacingDirection, targetFacingDirection, ref dummyFloat, m_Smoothing);
 
         m_Animator.SetFloat("FacingDirection", actualFacingDirection);
+
+
+        // Try to anchor the main object to the current level as best as possible
+        transform.position = new Vector3(transform.position.x, transform.position.y, m_LevelHolder.GetLevelDepth() + (m_FollowLevelDepth ? 0.0f : -15.0f));
+    }
+
+    public void DisableFollowLevelDepth()
+    {
+        m_FollowLevelDepth = false;
+    }
+    public void EnableFollowLevelDepth()
+    {
+        m_FollowLevelDepth = true;
+    }
+
+    public void OnLevelComplete()
+    {
+        m_Animator.SetTrigger("Fling");
+        m_LevelHolder.OnLevelComplete();
     }
 }
