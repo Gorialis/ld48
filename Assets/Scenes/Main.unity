@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 97804043}
   - component: {fileID: 97804042}
   - component: {fileID: 97804041}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Collision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1119,7 +1119,7 @@ GameObject:
   - component: {fileID: 332157542}
   - component: {fileID: 332157544}
   - component: {fileID: 332157543}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PreventSink
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1202,7 +1202,7 @@ GameObject:
   m_Component:
   - component: {fileID: 349077179}
   - component: {fileID: 349077180}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ElevatorCollision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1492,7 +1492,7 @@ GameObject:
   - component: {fileID: 636833526}
   - component: {fileID: 636833528}
   - component: {fileID: 636833527}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WedgeCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1578,7 +1578,7 @@ GameObject:
   - component: {fileID: 652296738}
   - component: {fileID: 652296740}
   - component: {fileID: 652296739}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Collision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1920,7 +1920,7 @@ GameObject:
   - component: {fileID: 748479127}
   - component: {fileID: 748479126}
   - component: {fileID: 748479125}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Collision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2581,7 +2581,7 @@ GameObject:
   - component: {fileID: 886460760}
   - component: {fileID: 886460759}
   - component: {fileID: 886460758}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Collision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3004,7 +3004,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1010902669}
   - component: {fileID: 1010902670}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Collision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3130,7 +3130,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1070454168}
   - component: {fileID: 1070454169}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Door1Collision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4904,7 +4904,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2086839258}
   - component: {fileID: 2086839259}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Door2Collision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5137,7 +5137,7 @@ GameObject:
   - component: {fileID: 2110296803}
   - component: {fileID: 2110296802}
   - component: {fileID: 2110296804}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Collision
   m_TagString: Untagged
   m_Icon: {fileID: 0}

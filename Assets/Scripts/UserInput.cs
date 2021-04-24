@@ -29,6 +29,7 @@ public class UserInput : MonoBehaviour
 
     // Velocities for interpolation
     private float facingDirectionVelocity = 0.0f;
+    private Vector3 rotationVelocity = Vector3.zero;
     private Vector3 speedVelocity = Vector3.zero;
     private float lightBrightnessVelocity = 0.0f;
 
@@ -58,6 +59,16 @@ public class UserInput : MonoBehaviour
 
         m_Animator.SetFloat("FacingDirection", actualFacingDirection);
 
+        // Try to align the robo such that it is facing the ground below it
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 2.0f, Physics.DefaultRaycastLayers & ~LayerMask.GetMask("Player"));
+        float floorAngle = 0.0f;
+
+        if (hit.collider != null)
+        {
+            floorAngle = Mathf.Atan2(-hit.normal.x, hit.normal.y) * Mathf.Rad2Deg;
+        }
+
+        transform.eulerAngles = Vector3.SmoothDamp(transform.eulerAngles, new Vector3(0, 0, floorAngle), ref rotationVelocity, 1.0f);
 
         // Try to anchor the main object to the current level as best as possible
         transform.position = new Vector3(transform.position.x, transform.position.y, m_LevelHolder.GetLevelDepth() + (m_FollowLevelDepth ? 0.0f : -15.0f));
