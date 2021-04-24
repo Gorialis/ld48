@@ -76,12 +76,15 @@ public class UserInput : MonoBehaviour
                 if ((target.transform.position - clickWorldPosition).magnitude < 5.0f)
                 {
                     // Close enough to hit
-                    if (currentInteractable != null)
-                        currentInteractable.active = false;
 
-                    currentInteractable = target;
-                    target.active = true;
-                    break;
+                    if (currentInteractable == null || (currentInteractable != null && (target.transform.position - clickWorldPosition).magnitude < (currentInteractable.transform.position - clickWorldPosition).magnitude))
+                    {
+                        if (currentInteractable != null)
+                            currentInteractable.active = false;
+
+                        currentInteractable = target;
+                        target.active = true;
+                    }
                 }
             }
         }
