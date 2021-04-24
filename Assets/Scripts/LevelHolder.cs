@@ -24,7 +24,15 @@ public class LevelHolder : MonoBehaviour
         {
             levelObjects.Add(child.gameObject);
             levelVelocities.Add(Vector3.zero);
+
+            // Disable all the 2D colliders
+            foreach (Collider2D collider in child.gameObject.GetComponentsInChildren<Collider2D>())
+            {
+                collider.enabled = false;
+            }
         }
+
+        EnableCurrentColliders();
     }
 
     // Update is called once per frame
@@ -46,12 +54,37 @@ public class LevelHolder : MonoBehaviour
         return levelObjects[1].transform.position.z;
     }
 
+    public BeamInteractable[] GetLevelInteractables()
+    {
+        return levelObjects[1].GetComponentsInChildren<BeamInteractable>();
+    }
+
+    public void DisableCurrentColliders()
+    {
+        foreach (Collider2D collider in levelObjects[1].GetComponentsInChildren<Collider2D>())
+        {
+            collider.enabled = false;
+        }
+    }
+
+    public void EnableCurrentColliders()
+    {
+        foreach (Collider2D collider in levelObjects[1].GetComponentsInChildren<Collider2D>())
+        {
+            collider.enabled = true;
+        }
+    }
+
     public void OnLevelComplete()
     {
+        DisableCurrentColliders();
+
         // Destroy the first level in the sequence
         GameObject.Destroy(levelObjects[0]);
         levelObjects.RemoveAt(0);
         levelVelocities.RemoveAt(0);
+
+        EnableCurrentColliders();
 
     }
 }
