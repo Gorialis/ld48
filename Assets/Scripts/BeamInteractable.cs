@@ -37,24 +37,28 @@ public class BeamInteractable : MonoBehaviour
         brightness = Mathf.SmoothDamp(brightness, active ? 1.0f : 0.0f, ref brightnessVelocity, 0.25f);
         m_Animator.SetFloat("Brightness", brightness);
 
-        if (pullable)
-        {
-            if (active)
-            {
-                Vector3 distanceToTarget = (target - transform.position) * 4.0f;
-
-                // Clamp magnitude
-                if (distanceToTarget.magnitude > 50)
-                {
-                    distanceToTarget *= (50.0f / distanceToTarget.magnitude);
-                }
-
-                m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, distanceToTarget, ref movementVelocity, m_Smoothing);
-            }
-        } else
+        if (!pullable)
         {
             activation = Mathf.SmoothDamp(activation, active ? 1.0f : 0.0f, ref activationVelocity, 1.0f);
             m_targetAnimator.SetFloat(m_targetField, activation);
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (pullable && active)
+        {
+            Vector3 distanceToTarget = (target - transform.position) * 4.0f;
+
+            // Clamp magnitude
+            if (distanceToTarget.magnitude > 50)
+            {
+                distanceToTarget *= (50.0f / distanceToTarget.magnitude);
+            }
+
+            // Use AddForce to ensure friction
+            Vector3 newVelocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, distanceToTarget, ref movementVelocity, m_Smoothing);
+            m_Rigidbody2D.AddForce((Vector2)newVelocity - m_Rigidbody2D.velocity, ForceMode2D.Impulse);
         }
     }
 }

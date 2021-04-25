@@ -19,7 +19,7 @@ public class SlowFollowMouse : MonoBehaviour
     void Update()
     {
         // Calculate target position
-        Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, transform.localPosition.z);
+        Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, transform.position.z - m_Camera.transform.position.z);
         Vector3 target = m_Camera.ScreenToWorldPoint(mousePosition);
 
         transform.position = Vector3.SmoothDamp(transform.position, target, ref velocity, m_Smoothness);

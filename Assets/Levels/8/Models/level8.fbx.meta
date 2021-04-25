@@ -7,8 +7,23 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: DarkMetal
+    second: {fileID: 2100000, guid: 3c736f55d9659054fbf7774f7e9e9735, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: DarkWood
     second: {fileID: 2100000, guid: 83e7a1a2cdef38a46b9752e624f301bd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: EmissiveLight
+    second: {fileID: 2100000, guid: 7a37fddbdbd0c3149b820c789cd6cfe2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: GoldFixture
+    second: {fileID: 2100000, guid: 3c7f4146f89522b44b0bf9eaca1018cc, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -17,7 +32,27 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Metal
+    second: {fileID: 2100000, guid: f00b5d57f0f1aff4b8b6b5ad77792110, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RealString
+    second: {fileID: 2100000, guid: e31e770137b5c964b81b57dfd1c959ae, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: RealWood
+    second: {fileID: 2100000, guid: 9376b4b68b893ee46ac34fbeb65da9a8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ToggleLight
+    second: {fileID: 2100000, guid: 04958d615cb727a4fa40666039fc82c8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wood
     second: {fileID: 2100000, guid: 9376b4b68b893ee46ac34fbeb65da9a8, type: 2}
   materials:
     materialImportMode: 2

@@ -145,6 +145,10 @@ public class UserInput : MonoBehaviour
         // Interaction music
         m_MusicController.interactionOn = (currentInteractable != null);
 
+        // Reset
+        if (Input.GetKeyDown(KeyCode.R))
+            transform.position = m_LevelHolder.GetResetPosition();
+
     }
 
     Vector3 BezierTerm(float t, Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3)

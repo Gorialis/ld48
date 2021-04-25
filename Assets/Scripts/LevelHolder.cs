@@ -7,6 +7,10 @@ public class LevelHolder : MonoBehaviour
     List<GameObject> levelObjects = new List<GameObject>();
     List<Vector3> levelVelocities = new List<Vector3>();
 
+    public FOVWinch cameraWinch;
+
+    int levelIndex = 0;
+
     // We want to smoothly 'drop' the current level when it is completed
     // Ideally, this constitutes destroying it as well, for performance and, well, the sake of ease
     // Each level object is interpolated towards a target, based on where it is in the upcoming level buffer.
@@ -69,6 +73,18 @@ public class LevelHolder : MonoBehaviour
         return levelObjects[1].GetComponentsInChildren<BeamInteractable>();
     }
 
+    public Vector3 GetResetPosition()
+    {
+        Vector3 pos = levelObjects[0].transform.position;
+
+        foreach (Launchpad launchpad in levelObjects[0].GetComponentsInChildren<Launchpad>())
+        {
+            pos = launchpad.transform.position;
+        }
+
+        return levelObjects[1].transform.position + (pos - levelObjects[0].transform.position) + Vector3.up;
+    }
+
     public void DisableCurrentColliders()
     {
         foreach (Collider2D collider in levelObjects[1].GetComponentsInChildren<Collider2D>())
@@ -115,6 +131,11 @@ public class LevelHolder : MonoBehaviour
         GameObject.Destroy(levelObjects[0]);
         levelObjects.RemoveAt(0);
         levelVelocities.RemoveAt(0);
+
+        levelIndex++;
+
+        if (levelIndex == 7)
+            cameraWinch.targetHeight = 20.0f;
 
         EnableCurrentColliders();
 
