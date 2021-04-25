@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelHolder : MonoBehaviour
 {
@@ -8,8 +9,10 @@ public class LevelHolder : MonoBehaviour
     List<Vector3> levelVelocities = new List<Vector3>();
 
     public FOVWinch cameraWinch;
+    public Text completionText;
 
     int levelIndex = 0;
+    private float gameTimer = 0.0f;
 
     // We want to smoothly 'drop' the current level when it is completed
     // Ideally, this constitutes destroying it as well, for performance and, well, the sake of ease
@@ -65,6 +68,8 @@ public class LevelHolder : MonoBehaviour
 
             level.transform.position = Vector3.SmoothDamp(level.transform.position, targetPosition, ref velocity, m_Smoothing);
         }
+
+        gameTimer += Time.deltaTime;
     }
 
     public float GetLevelDepth()
@@ -154,6 +159,11 @@ public class LevelHolder : MonoBehaviour
             cameraWinch.targetHeight = 20.0f;
             cameraWinch.targetDistance = 50.0f;
         }
+
+        int minutes = Mathf.FloorToInt(gameTimer / 60.0f);
+        int seconds = Mathf.FloorToInt(gameTimer % 60.0f);
+
+        completionText.text = $"Your completion time:\n{minutes} minutes, {seconds} seconds";
 
         EnableCurrentColliders();
 

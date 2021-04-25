@@ -10,6 +10,7 @@ public class MusicController : MonoBehaviour
 
     public AudioClip[] layers;
     public int[] triggers;
+    public int[] exits;
 
     public bool interactionOn;
     public AudioClip interactionClip;
@@ -38,7 +39,7 @@ public class MusicController : MonoBehaviour
     {
         for (int i = 0; i < layerSources.Length; i++)
         {
-            HandleClip(layerSources[i], ref layerVelocities[i], triggers[i] <= phase);
+            HandleClip(layerSources[i], ref layerVelocities[i], (triggers[i] <= phase) && (exits[i] < 0 || (exits[i] >= phase)));
         }
 
         HandleClip(interactionSource, ref interactionVelocity, interactionOn, 0.25f);
