@@ -8,8 +8,7 @@ public class UserInput : MonoBehaviour
     public Camera m_Camera;
     public MusicController m_MusicController;
 
-    public AudioSource m_EngineSound;
-    public float m_EngineLoudness = 0.05f;
+    public AudioSource m_RespawnSound;
     public LineRenderer m_LineRenderer;
     public Transform m_BeamOrigin;
     public Transform m_BeamHandle;
@@ -139,15 +138,15 @@ public class UserInput : MonoBehaviour
             currentInteractable.target = m_Camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, relativeToCamera.z));
         }
 
-        // Engine sound
-        m_EngineSound.volume = m_EngineLoudness * (m_Rigidbody2D.velocity.magnitude + 5.0f);
-
         // Interaction music
         m_MusicController.interactionOn = (currentInteractable != null);
 
         // Reset
         if (Input.GetKeyDown(KeyCode.R))
+        {
             transform.position = m_LevelHolder.GetResetPosition();
+            m_RespawnSound.Play();
+        }
 
         // Debug: skip level
         if (Application.isEditor && Input.GetKeyDown(KeyCode.N))
