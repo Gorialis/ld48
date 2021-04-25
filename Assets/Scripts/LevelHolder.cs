@@ -40,6 +40,10 @@ public class LevelHolder : MonoBehaviour
             {
                 if (rigidbody.bodyType != RigidbodyType2D.Static)
                 {
+                    DontTouchRigidbody dontTouch = rigidbody.gameObject.AddComponent<DontTouchRigidbody>();
+                    dontTouch.kinematic = rigidbody.isKinematic;
+                    dontTouch.constraints = rigidbody.constraints;
+
                     rigidbody.isKinematic = true;
                     rigidbody.constraints |= RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
                 }
@@ -95,9 +99,11 @@ public class LevelHolder : MonoBehaviour
         foreach (Rigidbody2D rigidbody in levelObjects[1].GetComponentsInChildren<Rigidbody2D>())
         {
             if (rigidbody.bodyType != RigidbodyType2D.Static)
+            {
                 rigidbody.isKinematic = true;
+                rigidbody.velocity = Vector3.zero;
+            }
 
-            rigidbody.velocity = Vector3.zero;
         }
     }
 
@@ -110,16 +116,13 @@ public class LevelHolder : MonoBehaviour
 
         foreach (Rigidbody2D rigidbody in levelObjects[1].GetComponentsInChildren<Rigidbody2D>())
         {
-            if (rigidbody.bodyType != RigidbodyType2D.Static)
-                rigidbody.isKinematic = false;
+            DontTouchRigidbody dontTouch = rigidbody.gameObject.GetComponent<DontTouchRigidbody>();
 
-            // Honor the desired constraints of an interactable if present
-            BeamInteractable interactable = rigidbody.GetComponent<BeamInteractable>();
-
-            if (interactable != null)
-                rigidbody.constraints = interactable.m_RigidbodyConstraints;
-            else
-                rigidbody.constraints &= ~(RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY);
+            if (dontTouch != null)
+            {
+                rigidbody.isKinematic = dontTouch.kinematic;
+                rigidbody.constraints = dontTouch.constraints;
+            }
         }
     }
 

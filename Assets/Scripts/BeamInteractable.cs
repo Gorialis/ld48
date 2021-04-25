@@ -7,7 +7,6 @@ public class BeamInteractable : MonoBehaviour
     public Animator m_Animator;
 
     public Rigidbody2D m_Rigidbody2D;
-    public RigidbodyConstraints2D m_RigidbodyConstraints;
     public bool pullable = false;
     public Vector3 target;
 
