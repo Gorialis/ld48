@@ -27,6 +27,9 @@ public class UserInput : MonoBehaviour
     private BeamInteractable currentInteractable = null;
     private float lightBrightness = 0.0f;
 
+    // Angle correction
+    private Vector3 correctionAngle = Vector3.zero;
+
     // Velocities for interpolation
     private float facingDirectionVelocity = 0.0f;
     private Vector3 rotationVelocity = Vector3.zero;
@@ -68,7 +71,8 @@ public class UserInput : MonoBehaviour
             floorAngle = Mathf.Atan2(-hit.normal.x, hit.normal.y) * Mathf.Rad2Deg;
         }
 
-        transform.eulerAngles = Vector3.SmoothDamp(transform.eulerAngles, new Vector3(0, 0, floorAngle), ref rotationVelocity, 1.0f);
+        correctionAngle = Vector3.SmoothDamp(correctionAngle, new Vector3(0, 0, floorAngle), ref rotationVelocity, 0.2f);
+        transform.localEulerAngles = correctionAngle;
 
         // Try to anchor the main object to the current level as best as possible
         transform.position = new Vector3(transform.position.x, transform.position.y, m_LevelHolder.GetLevelDepth() + (m_FollowLevelDepth ? 0.0f : -15.0f));
