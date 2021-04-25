@@ -34,8 +34,11 @@ public class LevelHolder : MonoBehaviour
             // Disable all the Rigidbodies
             foreach (Rigidbody2D rigidbody in child.gameObject.GetComponentsInChildren<Rigidbody2D>())
             {
-                rigidbody.isKinematic = true;
-                rigidbody.constraints |= RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
+                if (rigidbody.bodyType != RigidbodyType2D.Static)
+                {
+                    rigidbody.isKinematic = true;
+                    rigidbody.constraints |= RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
+                }
             }
         }
 
@@ -75,7 +78,8 @@ public class LevelHolder : MonoBehaviour
 
         foreach (Rigidbody2D rigidbody in levelObjects[1].GetComponentsInChildren<Rigidbody2D>())
         {
-            rigidbody.isKinematic = true;
+            if (rigidbody.bodyType != RigidbodyType2D.Static)
+                rigidbody.isKinematic = true;
         }
     }
 
@@ -88,7 +92,8 @@ public class LevelHolder : MonoBehaviour
 
         foreach (Rigidbody2D rigidbody in levelObjects[1].GetComponentsInChildren<Rigidbody2D>())
         {
-            rigidbody.isKinematic = false;
+            if (rigidbody.bodyType != RigidbodyType2D.Static)
+                rigidbody.isKinematic = false;
 
             // Honor the desired constraints of an interactable if present
             BeamInteractable interactable = rigidbody.GetComponent<BeamInteractable>();

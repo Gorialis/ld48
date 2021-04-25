@@ -41,7 +41,7 @@ public class BeamInteractable : MonoBehaviour
         {
             if (active)
             {
-                Vector3 distanceToTarget = (target - transform.position) * 4.0f;
+                Vector3 distanceToTarget = (target - transform.position) * 8.0f;
 
                 // Clamp magnitude
                 if (distanceToTarget.magnitude > 50)
