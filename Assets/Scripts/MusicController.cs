@@ -41,7 +41,7 @@ public class MusicController : MonoBehaviour
             HandleClip(layerSources[i], ref layerVelocities[i], triggers[i] <= phase);
         }
 
-        HandleClip(interactionSource, ref interactionVelocity, interactionOn, 0.5f);
+        HandleClip(interactionSource, ref interactionVelocity, interactionOn, 0.25f);
     }
 
     AudioSource CreateSource(AudioClip clip)

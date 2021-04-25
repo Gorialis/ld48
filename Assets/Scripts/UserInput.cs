@@ -149,6 +149,10 @@ public class UserInput : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
             transform.position = m_LevelHolder.GetResetPosition();
 
+        // Debug: skip level
+        if (Application.isEditor && Input.GetKeyDown(KeyCode.N))
+            transform.position = m_LevelHolder.GetEndPosition();
+
     }
 
     Vector3 BezierTerm(float t, Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3)

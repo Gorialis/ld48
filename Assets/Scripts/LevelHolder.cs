@@ -89,6 +89,18 @@ public class LevelHolder : MonoBehaviour
         return levelObjects[1].transform.position + (pos - levelObjects[0].transform.position) + Vector3.up;
     }
 
+    public Vector3 GetEndPosition()
+    {
+        Vector3 pos = levelObjects[1].transform.position;
+
+        foreach (Launchpad launchpad in levelObjects[1].GetComponentsInChildren<Launchpad>())
+        {
+            pos = launchpad.transform.position;
+        }
+
+        return pos + Vector3.up;
+    }
+
     public void DisableCurrentColliders()
     {
         foreach (Collider2D collider in levelObjects[1].GetComponentsInChildren<Collider2D>())
@@ -138,7 +150,10 @@ public class LevelHolder : MonoBehaviour
         levelIndex++;
 
         if (levelIndex == 7)
+        {
             cameraWinch.targetHeight = 20.0f;
+            cameraWinch.targetDistance = 50.0f;
+        }
 
         EnableCurrentColliders();
 
