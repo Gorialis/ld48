@@ -80,6 +80,8 @@ public class LevelHolder : MonoBehaviour
         {
             if (rigidbody.bodyType != RigidbodyType2D.Static)
                 rigidbody.isKinematic = true;
+
+            rigidbody.velocity = Vector3.zero;
         }
     }
 
