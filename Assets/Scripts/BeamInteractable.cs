@@ -38,7 +38,7 @@ public class BeamInteractable : MonoBehaviour
 
         if (!pullable)
         {
-            activation = Mathf.SmoothDamp(activation, active ? 1.0f : 0.0f, ref activationVelocity, 1.0f);
+            activation = Mathf.SmoothDamp(activation, active ? 1.0f : 0.0f, ref activationVelocity, m_Smoothing * 2.0f);
             m_targetAnimator.SetFloat(m_targetField, activation);
         }
     }
